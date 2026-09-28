@@ -1,9 +1,17 @@
 import * as THREE from 'three';
 
 export function initGame() {
-  const canvas = document.querySelector('#game-canvas');
-  
-  // 1. Scene & Camera Setup
+  // 1. Canvas 및 Scene / Camera / Renderer 설정
+  let canvas = document.querySelector('#game-canvas');
+  const container = document.querySelector('#canvas-container') || document.body;
+
+  // HTML에 canvas 태그가 없으면 자동 생성하여 화면에 첨부
+  if (!canvas) {
+    canvas = document.createElement('canvas');
+    canvas.id = 'game-canvas';
+    container.appendChild(canvas);
+  }
+
   const scene = new THREE.Scene();
   scene.fog = new THREE.FogExp2(0x050508, 0.03);
 
@@ -52,7 +60,7 @@ export function initGame() {
   worker.onmessage = (e) => {
     if (e.data.type === 'UPDATE') {
       const { playerX, items, score } = e.data;
-      
+
       // 플레이어 위치 반영
       playerMesh.position.x = playerX;
 
@@ -65,8 +73,9 @@ export function initGame() {
         }
       });
 
-      // UI 점수 업데이트
-      document.querySelector('#score').innerText = score;
+      // UI 점수 업데이트 (안전 검사)
+      const scoreEl = document.querySelector('#score');
+      if (scoreEl) scoreEl.innerText = score;
     }
   };
 
