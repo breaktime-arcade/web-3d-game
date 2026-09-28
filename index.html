@@ -3,22 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>High Performance Web 3D Game</title>
+  <title>3D Space Collector</title>
   <script src="./coi-serviceworker.js"></script>
   <style>
     body { margin: 0; overflow: hidden; background-color: #111; color: #fff; font-family: sans-serif; }
     #canvas-container { width: 100vw; height: 100vh; display: block; }
-    #ui { position: absolute; top: 16px; left: 16px; pointer-events: none; }
+    #ui { position: absolute; top: 16px; left: 16px; pointer-events: none; z-index: 10; }
     h1 { margin: 0 0 8px 0; font-size: 20px; }
-    p { margin: 0; font-size: 14px; opacity: 0.8; }
+    p { margin: 0 0 4px 0; font-size: 14px; opacity: 0.8; }
   </style>
   <script type="module" crossorigin src="./assets/index-Dq5cEtCd.js"></script>
 </head>
 <body>
   <div id="ui">
-    <h1>WebWorker Multi-thread 3D Demo</h1>
-    <p>FPS: <span id="fps">0</span> | Objects: <span id="count">0</span></p>
+    <h1>3D Space Collector</h1>
+    <p>Score: <span id="score">0</span></p>
+    <p>방향키(← →)로 플레이어를 조종하세요.</p>
   </div>
-  <div id="canvas-container"></div>
+  <div id="canvas-container">
+    <canvas id="game-canvas"></canvas>
+  </div>
 </body>
 </html>
