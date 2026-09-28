@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>High Performance 3D Web Game</title>
-  <link rel="stylesheet" href="./style.css">
-  <!-- GitHub Pages 전용 SharedArrayBuffer 활성화 워커 -->
-  <script src="./coi-serviceworker.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>High Performance Web 3D Game</title>
+  <!-- coi-serviceworker.js 경로를 /web-3d-game/ 기준 절대 경로로 수정 -->
+  <script src="/web-3d-game/coi-serviceworker.js"></script>
+  <style>
+    body { margin: 0; overflow: hidden; background-color: #111; color: #fff; font-family: sans-serif; }
+    #canvas-container { width: 100vw; height: 100vh; display: block; }
+    #ui { position: absolute; top: 16px; left: 16px; pointer-events: none; }
+    h1 { margin: 0 0 8px 0; font-size: 20px; }
+    p { margin: 0; font-size: 14px; opacity: 0.8; }
+  </style>
 </head>
 <body>
-  <div id="ui-container">
-    <h1>3D Space Collector</h1>
-    <p>Score: <span id="score">0</span></p>
-    <p class="sub">방향키(← →)로 플레이어를 조종하세요.</p>
+  <div id="ui">
+    <h1>WebWorker Multi-thread 3D Demo</h1>
+    <p>FPS: <span id="fps">0</span> | Objects: <span id="count">0</span></p>
   </div>
-  <canvas id="game-canvas"></canvas>
-  <script type="module" src="./main.js"></script>
+  <div id="canvas-container"></div>
+  <script type="module" src="./src/main.js"></script>
 </body>
 </html>
