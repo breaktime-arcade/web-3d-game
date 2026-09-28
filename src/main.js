@@ -1,15 +1,6 @@
 import { initGame } from './game.js';
 
-// Service Worker 등록 (오프라인 캐싱 및 PWA 지원)
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').then((reg) => {
-      console.log('Service Worker Registered!', reg);
-    }).catch((err) => {
-      console.error('Service Worker Registration Failed:', err);
-    });
-  });
-}
-
-// 게임 시작
-initGame();
+// DOM 요소가 완전히 로드된 후 안전하게 게임을 시작합니다.
+window.addEventListener('DOMContentLoaded', () => {
+  initGame();
+});
